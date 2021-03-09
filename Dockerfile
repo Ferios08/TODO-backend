@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:lts
 LABEL maintainer="Firas Chbiki, firas.chbiki@sofrecom.com"
 
 # Setting default dir
@@ -18,4 +18,4 @@ RUN npm install
 EXPOSE 1338
 
 # Boostrapping the app
-CMD ["node", "index.js"]
+CMD ["node", "server.js"]
