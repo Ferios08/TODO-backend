@@ -5,7 +5,7 @@ const db_host = process.env.DB_HOST;
 const db_port = process.env.DB_PORT;
 const db_user = process.env.DB_USER;
 const db_pass = process.env.DB_PASS;
-const db_name = process.env.DB_NAME;
+var db_name = 'semidb-' + (process.env.NODE_ENV || 'dev');
 
 var pool = mysql.createPool({
   connectionLimit: 10,
@@ -13,10 +13,7 @@ var pool = mysql.createPool({
   port: db_port,
   user: db_user,
   password: db_pass,
-  database: db_name,
-  acquireTimeout: 1000000,
-  connectionLimit: 15,
-  queueLimit: 30,
+  database: db_name
 })
 pool.getConnection((err, connection) => {
   if (err) {
@@ -30,7 +27,7 @@ pool.getConnection((err, connection) => {
       console.error('Database connection was refused.')
     }
   }
-  if (connection) connection.release(error => error ? reject(error) : resolve());
+  if (connection) connection.release()
   return
 })
 module.exports = pool
