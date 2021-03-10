@@ -5,7 +5,7 @@ const db_host = process.env.DB_HOST;
 const db_port = process.env.DB_PORT;
 const db_user = process.env.DB_USER;
 const db_pass = process.env.DB_PASS;
-var db_name = 'semidb-' + (process.env.NODE_ENV || 'dev');
+const db_name = process.env.DB_NAME;
 
 var pool = mysql.createPool({
   connectionLimit: 10,
